@@ -4,7 +4,7 @@
 }
 </style>
 @extends('layouts.app')
-
+ 
 @section('content')
 
 <section id="header-area" class="body-content signin-signups">

@@ -161,7 +161,7 @@
                             <a class="nav-link" href="{{url('/')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
+                            <a class="nav-link" href="{{url('/about')}}">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/driver')}}">Drivers</a>
@@ -170,7 +170,7 @@
                             <a class="nav-link" href="{{url('/advertiser')}}">Advertisers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact Us</a>
+                            <a class="nav-link" href="{{url('/contact')}}">Contact Us</a>
                         </li>
                     </ul>
                 </div>

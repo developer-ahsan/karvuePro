@@ -45,6 +45,12 @@ Route::post('registercustomer', [CustomerPortal::class, 'register']);
 Route::get('print-register', function () {
 	return view('Print.register');
 });
+Route::get('about', function () {
+	return view('about');
+});
+Route::get('contact', function () {
+	return view('contact');
+});
 Route::post('registerprintingpress', [Printer::class, 'register']);
 
 Route::get('dashboard', [Commercialfleet::class, 'Userlogin']);

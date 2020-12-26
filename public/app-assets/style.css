@@ -463,7 +463,16 @@ header {
     -o-background-size: cover;
     background-size: cover;
 }
-
+.about-details {
+    background: url(images/about-background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.about-details .inner-header{
+    padding: 80px 0;
+}
 .earn-money-container,
 .advertiser-details {
     position: relative;
@@ -738,7 +747,8 @@ header {
 
 .section-background,
 .section-background .section-background-overlay,
-.advetiser-details .section-background-overlay {
+.advetiser-details .section-background-overlay,
+.about-details .section-background-overlay {
     position: absolute;
     top: 0;
     right: 0;

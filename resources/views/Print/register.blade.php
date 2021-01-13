@@ -4,7 +4,7 @@
     width: 100%;
   }
   .signin-signups {
-    background: url(app-assets/designer/signup-back.jpg) no-repeat bottom right;
+    background: url(app-assets/designer/printer-back.jpg) no-repeat bottom right;
 }
 </style>
 @extends('layouts.app')
@@ -20,7 +20,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Sign Up Commercial Fleet Operators</li>
+                                <li class="breadcrumb-item active" aria-current="page">Sign Up | Printing</li>
                             </ol>
                         </nav>
                     </div>
@@ -43,7 +43,7 @@
                          {{ csrf_field() }}
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <h4>Sign Up - Commercial Fleet Operators</h4>
+                                    <h4>Sign Up - Printing</h4>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>Personal Information</h5>
@@ -140,23 +140,6 @@
                                       <label class="label text-sm">Zip code</label>
                                       <input type="text" class="field form-control" id="postal_code" disabled="true" name="postal_code" placeholder="Zip" >
                                   </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <h5>Business Hours & Insurance Information</h5>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="service-info">Normal business operation date & time</label>
-                                    <input type="date" name="date" class="form-control" id="service-info" required="true"required="true">
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="service-info">Select Time</label>
-                                    <input type="time" name="time" class="form-control" id="service-info" required="true">
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                             <div class="form-group form-check">

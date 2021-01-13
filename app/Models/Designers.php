@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Designers extends Model
 {
     use HasFactory;
+    public function sampledesigner(){
+        return $this->hasMany('App\Models\SampleDesigner' , 'designer_id' , 'id');
+    }
 }

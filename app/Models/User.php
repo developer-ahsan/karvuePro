@@ -9,8 +9,21 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
 
+    use HasFactory, Notifiable;
+    
+    public function advertiser(){
+        return $this->hasOne('App\Models\CustomersPortal' , 'user_id' , 'id');
+    }
+    public function designer(){
+        return $this->hasOne('App\Models\Designers' , 'user_id' , 'id');
+    }
+    public function printer(){
+        return $this->hasOne('App\Models\Printers' , 'user_id' , 'id');
+    }
+    public function fleet(){
+        return $this->hasOne('App\Models\Commercialfleets' , 'user_id' , 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *

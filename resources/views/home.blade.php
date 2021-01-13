@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="img-home"><img src="{{asset('app-assets/images/adsdesigner.png')}}" /></div>
+                    <div class="img-home"><img src="{{asset('app-assets/designer/designer-back.jpg')}}" /></div>
                 </div>
             </div>
         </div>

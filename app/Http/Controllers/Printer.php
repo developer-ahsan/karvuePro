@@ -30,8 +30,6 @@ class Printer extends Controller
 	        // toastr()->error('Password is not same');
     	}
     	
-        $printer->f_name = $request->f_name; 
-        $printer->l_name = $request->l_name; 
         $printer->c_name = $request->c_name; 
         $printer->c_phone = $request->c_phone; 
         $printer->email = $request->email; 
@@ -39,11 +37,12 @@ class Printer extends Controller
         $printer->locationField = $request->locationField; 
         $printer->locality = $request->locality; 
         $printer->administrative_area_level_1 = $request->administrative_area_level_1; 
-        $printer->date = $request->date; 
-        $printer->time = $request->time; 
+        $printer->date = '2020-12-12'; 
+        $printer->time = '$request->time'; 
         $printer->user_id = $user->id;
         $printer->save();
         toastr()->success('Your Account needs an approval.');
-        return view('thanks')->with('message','Printing Company Registered SuccessFully');
+        return redirect('/');
+
     }
 }

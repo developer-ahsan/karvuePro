@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Karvue</title>
+  <title>Wevertize</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('admin-assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -17,6 +17,12 @@
 
   <!-- Custom styles for this template-->
   <link href="{{asset('admin-assets/css/admin-css.css')}}" rel="stylesheet">
+  <link href="{{asset('admin-assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmdMnJY62bTAjU3Sk3IVGGOIMPSe7OMjQ&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+    @toastr_css
 
 </head>
 
@@ -53,12 +59,12 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="{{url('/logout')}}">Logout</a>
         </div>
       </div>
     </div>
   </div>
-
+  
 <!-- Bootstrap core JavaScript-->
   <script src="{{asset('admin-assets/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('admin-assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -69,13 +75,13 @@
   <!-- Custom scripts for all pages-->
   <script src="{{asset('admin-assets/js/sb-admin-2.min.js')}}"></script>
 
-  <!-- Page level plugins -->
-  <script src="{{asset('admin-assets/vendor/chart.js/Chart.min.js')}}"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="{{asset('admin-assets/js/demo/chart-area-demo.js')}}"></script>
-  <script src="{{asset('admin-assets/js/demo/chart-pie-demo.js')}}"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmdMnJY62bTAjU3Sk3IVGGOIMPSe7OMjQ&libraries=places&callback=initMap" async defer ></script> -->
+<script src="{{asset('app-assets/js/mapInput.js')}}"></script>
+        @stack('scripts')
 
 </body>
-
+@jquery
+@toastr_js
+@toastr_render
 </html>

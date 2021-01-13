@@ -1,6 +1,6 @@
 <style type="text/css">
   .signin-signups {
-    background: url(app-assets/designer/signup-back.jpg) no-repeat bottom right;
+    background: url(app-assets/designer/advertiser-back.jpg) no-repeat bottom right;
 }
 </style>
 @extends('layouts.app')

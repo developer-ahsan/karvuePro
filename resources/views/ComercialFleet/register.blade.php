@@ -3,12 +3,15 @@
     height: 400px;
     width: 100%;
   }
+  .signin-signups {
+    background: url(app-assets/designer/signup-back.jpg) no-repeat bottom right;
+}
 </style>
 @extends('layouts.app')
 
 @section('content')
 
-<section id="header-area" class="body-content signin-signup">
+<section id="header-area" class="body-content signin-signups">
     <div class="default-container">
         <div class="container">
             <div class="row justify-content-center">

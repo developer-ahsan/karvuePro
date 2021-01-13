@@ -11,4 +11,8 @@ class Commercialfleets extends Model
     use HasFactory;
     use Notifiable;
      protected $guard = 'fleet';
+
+     public function waypoint(){
+        return $this->hasMany('App\Models\WayPoint' , 'fleet_id' , 'id');
+    }
 }

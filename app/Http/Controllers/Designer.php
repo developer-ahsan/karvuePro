@@ -58,8 +58,6 @@ class Designer extends Controller
             }
          }
         toastr()->success('Your Account needs an approval.');
-        return view('thanks')->with('message','Designer Registered SuccessFully');
-
-    	dd($designer);
+        return view('/');
     }
 }

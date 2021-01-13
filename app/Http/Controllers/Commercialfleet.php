@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Commercialfleets;
 use App\Models\CommercialVehicle;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\WayPoint;
+use Illuminate\Support\Facades\Session;
 class Commercialfleet extends Controller
 {
     public function register(Request $request)
@@ -44,7 +46,7 @@ class Commercialfleet extends Controller
         $cf->locationField = $request->locationField; 
         $cf->locality = $request->locality; 
         $cf->administrative_area_level_1 = $request->administrative_area_level_1; 
-        $cf->date = ''; 
+        $cf->date = '2020-12-12'; 
         $cf->time = ''; 
         $cf->insure_status = $request->check; 
         $cf->user_id = $user->id;
@@ -59,10 +61,30 @@ class Commercialfleet extends Controller
         	$cv->save();
         }
         toastr()->success('Commercial Fleet Registered SuccessFully');
-        return view('thanks')->with('message','Commercial Fleet Registered SuccessFully');
+        return redirect('/');
+        
     }
-    public function Userlogin(Request $request)
+    public function servicearea()
     {
-        return view('Admin.home');
+         $fleetoperators = Commercialfleets::where('user_id', Auth::id())->first();
+         $waypoint = WayPoint::select('location')->where('fleet_id', $fleetoperators->id)->get();  
+        return view('Admin.commercialfleet.servicearea',compact('waypoint'))->with('fleetoperators',$fleetoperators);
     }
+    public function submitdestination(Request $request)
+    {
+         $fleetoperators = Commercialfleets::where('id', $request->id)->first();
+         $fleetoperators->source = $request->locationField;
+         $fleetoperators->destination = $request->destination;
+         $fleetoperators->save();
+         return redirect()->back();
+    }
+    public function submitwaypoints(Request $request)
+    {
+        $waypoint = new WayPoint;
+        $waypoint->location = $request->waypoints;
+        $waypoint->fleet_id = $request->id;
+        $waypoint->save();
+        return redirect()->back();
+    }
+    
 }

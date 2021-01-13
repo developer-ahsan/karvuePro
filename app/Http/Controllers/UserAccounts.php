@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Mail\ResetPassword;
 
 class UserAccounts extends Controller
 {
@@ -27,12 +28,41 @@ class UserAccounts extends Controller
     	} else {
 	    	if ($user->password == $request->password) {
 	    		Auth::login($user);
-		        return view('thanks')->with('message',$user->user_type.' Logged in Successfully.');
+	    		return redirect('/');
 	    	} else {
 		        toastr()->error('Your Password is not matched.');
 		        return redirect()->back();
 
 	    	}
     	}
+    }
+    public function forgetpassword()
+    {
+    	return view('forgetpassword');
+    }
+    public function resetpassword(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if(!$user) {
+            toastr()->error('This email is not registerd');
+            return redirect()->back();
+        } else {
+            \Mail::to($request->email)->send(new ResetPassword($user));
+            toastr()->success('Email Sent Successfully.');
+            return redirect('/');
+        }
+    }
+    public function resetpasswordEmail($email)
+    {
+        return view('ResetPassword')->with('email',$email);
+
+    }
+    public function resetpasswordEmails(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        $user->password = $request->password;
+        $user->save();
+        toastr()->success('Password Changed Successfully...');
+        return redirect('/');
     }
 }

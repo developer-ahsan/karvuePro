@@ -44,6 +44,7 @@ class Commercialfleet extends Controller
         $cf->c_name = $request->c_name; 
         $cf->c_phone = $request->c_phone; 
         $cf->locationField = $request->locationField; 
+        $cf->source = $request->locationField; 
         $cf->locality = $request->locality; 
         $cf->administrative_area_level_1 = $request->administrative_area_level_1; 
         $cf->date = '2020-12-12'; 

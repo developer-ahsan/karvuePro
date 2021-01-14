@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CustomersPortal;
 use App\Models\User;
+use App\Mail\Confirmation;
 
 class CustomerPortal extends Controller
 {
@@ -29,9 +30,8 @@ class CustomerPortal extends Controller
         $customer->user_id = $user->id;
 
         $customer->save();
-        toastr()->success('Your Account needs an approval.');
-        return view('thanks')->with('message','Advertiser Registered SuccessFully');
-
-    	dd($designer);
+        toastr()->success('Advertiser Registered SuccessFully');
+        \Mail::to($request->email, $user->f_name.' '.$user->l_name)->send(new Confirmation($user));
+        return redirect('/');
     }
 }

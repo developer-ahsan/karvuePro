@@ -8,6 +8,7 @@ use App\Models\CommercialVehicle;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\WayPoint;
+use App\Mail\Confirmation;
 use Illuminate\Support\Facades\Session;
 class Commercialfleet extends Controller
 {
@@ -62,6 +63,7 @@ class Commercialfleet extends Controller
         	$cv->save();
         }
         toastr()->success('Commercial Fleet Registered SuccessFully');
+        \Mail::to($request->email, $user->f_name.' '.$user->l_name)->send(new Confirmation($user));
         return redirect('/');
         
     }
@@ -81,10 +83,17 @@ class Commercialfleet extends Controller
     }
     public function submitwaypoints(Request $request)
     {
-        $waypoint = new WayPoint;
-        $waypoint->location = $request->waypoints;
-        $waypoint->fleet_id = $request->id;
-        $waypoint->save();
+
+        if($request->waypoints) {
+            $waypoint = new WayPoint;
+            $waypoint->location = $request->waypoints;
+            $waypoint->fleet_id = $request->id;
+            $waypoint->save();
+        } else {
+            toastr()->warning('Please Add WayPoint');
+
+        }
+        
         return redirect()->back();
     }
     

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Designers;
 use App\Models\SampleDesigner;
 use App\Models\User;
+use App\Mail\Confirmation;
+
 class Designer extends Controller
 {
     public function register(Request $request)
@@ -58,6 +60,7 @@ class Designer extends Controller
             }
          }
         toastr()->success('Your Account needs an approval.');
+        \Mail::to($request->email, $user->f_name.' '.$user->l_name)->send(new Confirmation($user));
         return view('/');
     }
 }

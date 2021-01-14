@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Printers;
 use App\Models\User;
+use App\Mail\Confirmation;
 
 class Printer extends Controller
 {
@@ -42,6 +43,8 @@ class Printer extends Controller
         $printer->user_id = $user->id;
         $printer->save();
         toastr()->success('Your Account needs an approval.');
+        \Mail::to($request->email, $user->f_name.' '.$user->l_name)->send(new Confirmation($user));
+
         return redirect('/');
 
     }

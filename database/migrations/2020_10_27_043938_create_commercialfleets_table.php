@@ -25,7 +25,7 @@ class CreateCommercialfleetsTable extends Migration
             $table->string('insure_status');
             $table->string('status')->default(0);
             $table->string('image');
-            $table->string('source')->nullable();
+            $table->string('source')->nullable(); 
             $table->string('destination')->nullable();
             $table->string('user_id');
             $table->timestamps();

@@ -61,6 +61,6 @@ class Designer extends Controller
          }
         toastr()->success('Your Account needs an approval.');
         \Mail::to($request->email, $user->f_name.' '.$user->l_name)->send(new Confirmation($user));
-        return view('/');
+        return redirect('/');
     }
 }

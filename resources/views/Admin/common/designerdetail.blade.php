@@ -18,7 +18,7 @@
 					<h6 class="m-0 font-weight-bold text-primary ">Company Logo</h6>
 					</div>
 					<div class="card-body">
-						<img src="{{url('../'.$designer->image)}}" width=60px>
+						<img src="{{url('../'.$designer->comp_logo)}}" width=60px>
 					</div>
 				</div>
 				

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use App\Models\Commercialfleets;
 use App\Models\CommercialVehicle;
+use App\Models\FleetWorkingHr;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\WayPoint;
@@ -94,6 +95,73 @@ class Commercialfleet extends Controller
 
         }
         
+        return redirect()->back();
+    }
+    public function fleetvehicles()
+    {
+        $fleetoperators = Commercialfleets::where('user_id', Auth::id())->first();
+        $vehicles = CommercialVehicle::where('fleet_id', $fleetoperators->id)->get();
+        return view('Admin.commercialfleet.fleetvehicle')->with('vehicles',$vehicles);
+    }
+    public function fleetvehiclesdel($id)
+    {
+        $vehicle = CommercialVehicle::find($id);
+        $vehicle->delete();
+        toastr()->success('Vehicle Deleted SuccessFully');
+        return redirect()->back();
+    }
+    public function addnewVehicle(Request $request)
+    {
+        $fleetoperators = Commercialfleets::where('user_id', Auth::id())->first();
+        $vehicle = new CommercialVehicle;
+        $vehicle->type = $request->type;
+        $vehicle->count = $request->quan;
+        $vehicle->fleet_id = $fleetoperators->id;
+        $vehicle->save();
+        toastr()->success('Vehicle Added SuccessFully');
+        return redirect()->back();
+    }
+    public function workingHours()
+    {
+        $fleetoperators = Commercialfleets::where('user_id', Auth::id())->first();
+        $workingHour = FleetWorkingHr::where('fleet_id', $fleetoperators->id)->get();
+        return view('Admin.commercialfleet.workingHours')->with('workingHours',$workingHour);
+    }
+    public function addnewworkingHours(Request $request)
+    {
+        $holiday = 0;
+        $fleetoperators = Commercialfleets::where('user_id', Auth::id())->first();
+        if($request->has('holiday')) {
+            $holiday = 1;
+        }
+        $workingHour = new FleetWorkingHr;
+        $workingHour->week_day = $request->day;
+        $workingHour->start_time = $request->start;
+        $workingHour->end_time = $request->end;
+        $workingHour->holiday = $holiday;
+        $workingHour->fleet_id = $fleetoperators->id;
+        $workingHour->save();
+        toastr()->success('WorkingHour Added SuccessFully');
+        return redirect()->back();
+    }
+     public function workingHoursdel($id)
+    {
+        $workingHour = FleetWorkingHr::find($id);
+        $workingHour->delete();
+        toastr()->success('WorkingHour Deleted SuccessFully');
+        return redirect()->back();
+    }
+    public function getWayPoints()
+    {
+        $fleetoperators = Commercialfleets::where('user_id', Auth::id())->first();
+         $waypoints = WayPoint::where('fleet_id', $fleetoperators->id)->get();  
+        return view('Admin.commercialfleet.waypoints',compact('waypoints'))->with('fleetoperators',$fleetoperators);
+    }
+    public function wayPointsdel($id)
+    {
+        $waypoints = WayPoint::find($id);
+        $waypoints->delete();
+        toastr()->success('WayPoint Deleted SuccessFully');
         return redirect()->back();
     }
     

@@ -28,7 +28,7 @@ class UserAccounts extends Controller
     	} else {
 	    	if ($user->password == $request->password) {
 	    		Auth::login($user);
-	    		return redirect('/');
+	    		return redirect('/dashboard');
 	    	} else {
 		        toastr()->error('Your Password is not matched.');
 		        return redirect()->back();

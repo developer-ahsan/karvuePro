@@ -12,7 +12,13 @@ class Commercialfleets extends Model
     use Notifiable;
      protected $guard = 'fleet';
 
+     public function users(){
+        return $this->hasOne('App\Models\User' , 'id' , 'user_id');
+    }
      public function waypoint(){
         return $this->hasMany('App\Models\WayPoint' , 'fleet_id' , 'id');
+    }
+    public function vehicle(){
+        return $this->hasMany('App\Models\CommercialVehicle' , 'fleet_id' , 'id');
     }
 }

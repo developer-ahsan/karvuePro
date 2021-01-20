@@ -19,19 +19,114 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      @if(Auth::user()->user_type == 'designer')
+        <li class="nav-item {{ Request::url() == url('dashboard/designSamples') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/designSamples')}}">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Portfolio Samples</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/designerServicePlans') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/designerServicePlans')}}">
+            <i class="fas fa-fw fa-print"></i>
+            <span>Services</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activeFleet') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeFleet')}}">
+            <i class="fas fa-fw fa-car"></i>
+            <span>Active Commercial Fleet Operator</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activeAdvertiser') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeAdvertiser')}}">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>Active Advertisers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activeDesigner') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeDesigner')}}">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Active Designers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activePrinters') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activePrinters')}}">
+            <i class="fas fa-fw fa-print"></i>
+            <span>Active Printers</span>
+          </a>
+        </li>
+      @endif
+      @if(Auth::user()->user_type == 'printing')
+        
+        <li class="nav-item {{ Request::url() == url('dashboard/activeFleet') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeFleet')}}">
+            <i class="fas fa-fw fa-car"></i>
+            <span>Active Commercial Fleet Operator</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activeAdvertiser') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeAdvertiser')}}">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>Active Advertisers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activeDesigner') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeDesigner')}}">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Active Designers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/workingHoursPrinter') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{url('dashboard/workingHoursPrinter')}}">
+          <i class="fas fa-fw fa-clock"></i>
+          <span>Working Hours</span>
+        </a>
+      </li>
+      @endif
       @if(Auth::user()->user_type == 'advertiser')
-      <li class="nav-item {{ Request::url() == url('dashboard/fleetoperators') ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="{{url('dashboard/fleetoperators')}}">
+      <li class="nav-item {{ Request::url() == url('dashboard/activeFleet') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{url('dashboard/activeFleet')}}">
           <i class="fas fa-fw fa-user"></i>
           <span>Fleet Operators</span>
         </a>
       </li>
+      <li class="nav-item {{ Request::url() == url('dashboard/activeDesigner') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activeDesigner')}}">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Active Designers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/activePrinters') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/activePrinters')}}">
+            <i class="fas fa-fw fa-print"></i>
+            <span>Active Printers</span>
+          </a>
+        </li>
       @endif
       @if(Auth::user()->user_type == 'fleet')
       <li class="nav-item {{ Request::url() == url('dashboard/servicearea') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{url('dashboard/servicearea')}}">
           <i class="fas fa-fw fa-user"></i>
           <span>Service Areas</span>
+        </a>
+      </li>
+      <li class="nav-item {{ Request::url() == url('dashboard/fleetvehicles') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{url('dashboard/fleetvehicles')}}">
+          <i class="fas fa-fw fa-car"></i>
+          <span>Commercial Vehicles</span>
+        </a>
+      </li>
+      <li class="nav-item {{ Request::url() == url('dashboard/workingHours') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{url('dashboard/workingHours')}}">
+          <i class="fas fa-fw fa-clock"></i>
+          <span>Working Hours</span>
+        </a>
+      </li>
+      <li class="nav-item {{ Request::url() == url('dashboard/getWayPoints') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{url('dashboard/getWayPoints')}}">
+          <i class="fas fa-fw fa-map-marker"></i>
+          <span>WayPoints</span>
         </a>
       </li>
       @endif

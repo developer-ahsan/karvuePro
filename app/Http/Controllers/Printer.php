@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Printers;
 use App\Models\User;
+use App\Models\PrinterServiceHr;
 use App\Mail\Confirmation;
+use Illuminate\Support\Facades\Auth;
 
 class Printer extends Controller
 {
@@ -47,5 +49,35 @@ class Printer extends Controller
 
         return redirect('/');
 
+    }
+    public function workingHours()
+    {
+        $fleetoperators = Printers::where('user_id', Auth::id())->first();
+        $workingHour = PrinterServiceHr::where('printer_id', $fleetoperators->id)->get();
+        return view('Admin.printer.workinghours')->with('workingHours',$workingHour);
+    }
+    public function addnewworkingHours(Request $request)
+    {
+        $holiday = 0;
+        $fleetoperators = Printers::where('user_id', Auth::id())->first();
+        if($request->has('holiday')) {
+            $holiday = 1;
+        }
+        $workingHour = new PrinterServiceHr;
+        $workingHour->week_day = $request->day;
+        $workingHour->start_time = $request->start;
+        $workingHour->end_time = $request->end;
+        $workingHour->holiday = $holiday;
+        $workingHour->printer_id = $fleetoperators->id;
+        $workingHour->save();
+        toastr()->success('WorkingHour Added SuccessFully');
+        return redirect()->back();
+    }
+     public function workingHoursdel($id)
+    {
+        $workingHour = PrinterServiceHr::find($id);
+        $workingHour->delete();
+        toastr()->success('WorkingHour Deleted SuccessFully');
+        return redirect()->back();
     }
 }

@@ -76,4 +76,42 @@ Route::group(['prefix'=>'dashboard'], function(){
 	Route::get('servicearea', [Commercialfleet::class, 'servicearea']);
 	Route::post('submitdestination', [Commercialfleet::class, 'submitdestination']);
 	Route::post('submitwaypoints', [Commercialfleet::class, 'submitwaypoints']);
+
+
+	// FleetOperators
+	Route::get('fleetvehicles', [Commercialfleet::class, 'fleetvehicles']);
+	Route::get('fleetvehiclesdel/{id}', [Commercialfleet::class, 'fleetvehiclesdel']);
+	Route::post('addnewVehicle', [Commercialfleet::class, 'addnewVehicle']);
+
+	Route::get('workingHours', [Commercialfleet::class, 'workingHours']);
+	Route::post('addnewworkingHours', [Commercialfleet::class, 'addnewworkingHours']);
+	Route::get('workingHoursdel/{id}', [Commercialfleet::class, 'workingHoursdel']);
+
+	Route::get('getWayPoints', [Commercialfleet::class, 'getWayPoints']);
+	Route::get('wayPointsdel/{id}', [Commercialfleet::class, 'wayPointsdel']);
+
+
+	// Designers
+	Route::get('designSamples', [Designer::class, 'designSamples']);
+	Route::post('addnewSample', [Designer::class, 'addnewSample']);
+	Route::get('designSamplesdel/{id}', [Designer::class, 'designSamplesdel']);
+
+	Route::get('activePrinters', [Dashboard::class, 'activePrinters']);
+	Route::get('activeFleet', [Dashboard::class, 'activeFleet']);
+	Route::get('activeDesigner', [Dashboard::class, 'activeDesigner']);
+	Route::get('activeAdvertiser', [Dashboard::class, 'activeAdvertiser']);
+
+	Route::get('workingHoursPrinter', [Printer::class, 'workingHours']);
+	Route::post('addnewworkingHoursPrinter', [Printer::class, 'addnewworkingHours']);
+	Route::get('workingHoursdelPrinter/{id}', [Printer::class, 'workingHoursdel']);
+
+	Route::get('designerServicePlans', [Designer::class, 'designerServicePlans']);
+	Route::post('addnewServicePlan', [Designer::class, 'addnewServicePlan']);
+	Route::get('designerServicePlansdel/{id}', [Designer::class, 'designerServicePlansdel']);
+
+	Route::get('fleetoperatorsdetail/{id}', [Dashboard::class, 'fleetoperatorsdetail']);
+
+	Route::get('printersdetail/{id}', [Dashboard::class, 'printersdetail']);
+	Route::get('advertiserdetail/{id}', [Dashboard::class, 'advertiserdetail']);
+	Route::get('designerdetail/{id}', [Dashboard::class, 'designerdetail']);
 });

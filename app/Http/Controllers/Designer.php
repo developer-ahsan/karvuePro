@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Designers;
 use App\Models\SampleDesigner;
+use App\Models\DesignerService;
 use App\Models\User;
 use App\Mail\Confirmation;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Designer extends Controller
 {
@@ -62,5 +65,61 @@ class Designer extends Controller
         toastr()->success('Your Account needs an approval.');
         \Mail::to($request->email, $user->f_name.' '.$user->l_name)->send(new Confirmation($user));
         return redirect('/');
+    }
+    public function designSamples()
+    {
+        $designer = Designers::where('user_id',Auth::id())->with('sampledesigner')->first();
+        return view('Admin.designer.sampledesign')->with('samples',$designer);
+    }
+    public function addnewSample(Request $request)
+    {
+        $designer = Designers::where('user_id',Auth::id())->first();
+        $newdes = new SampleDesigner;
+        if($request->hasfile('image'))
+         {
+            $getimageName1 = time().'1.'.$request->image->getClientOriginalExtension();
+            $filepath = $request->image->move(storage_path('images'), $getimageName1);
+            $newdes->image = 'storage/images/'.$getimageName1;
+         }
+         $newdes->designer_id = $designer->id;
+         $newdes->save();
+        toastr()->success('Design Added to Your Portfolio');
+        return redirect()->back();
+    }
+    public function designSamplesdel($id)
+    {
+        $newdes = SampleDesigner::find($id);
+        $newdes->delete();
+        toastr()->success('Sample Deleted Successfully');
+        return redirect()->back();
+    }
+    public function designerServicePlans()    
+    {
+        $designer = Designers::where('user_id',Auth::id())->first();
+        $data['basic'] = DesignerService::where('type', 'Basic')->where('designer_id',$designer->id)->latest()->first();
+        $data['standard'] = DesignerService::where('type', 'Standard')->where('designer_id',$designer->id)->latest()->first();
+        $data['premium'] = DesignerService::where('type', 'Premium')->where('designer_id',$designer->id)->latest()->first();
+        return view('Admin.designer.servicesplan')->with('data',$data);
+    }
+    public function addnewServicePlan(Request $request)
+    {
+        $designer = Designers::where('user_id',Auth::id())->first();
+        $service = new DesignerService;
+        $service->type = $request->plan;
+        $service->detail = $request->detail;
+        $service->price = $request->price;
+        $service->revisions = $request->revisions;
+        $service->number_of_designs = $request->designs;
+        $service->designer_id = $designer->id;
+        $service->save();
+        toastr()->success('Service Added Successfully');
+        return redirect()->back();
+    }
+    public function designerServicePlansdel($value)
+    {
+        $service = DesignerService::find($value);
+        $service->delete();
+        toastr()->success('Service Deleted Successfully');
+        return redirect()->back();
     }
 }

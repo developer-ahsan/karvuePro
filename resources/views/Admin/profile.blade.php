@@ -189,6 +189,10 @@
                     <form method="POST" action="{{ url('/dashboard/updateProfile') }}" enctype="multipart/form-data" id="regform"  class="needs-validation" novalidate>
                            {{ csrf_field() }}
                               <div class="form-row">
+                                <div class="form-group col-md-12">
+                                   <label for="name-signup">Company Logo</label>
+                                 <img class="img-thumbnail" width="50px" src="{{url('../'.$user->fleet->image)}}">
+                               </div>
                                   <div class="form-group col-md-6">
                                       <label for="password-signup">First Name</label>
                                       <input type="text" class="form-control" id="password-signup" name="f_name" placeholder="First Name" value="{{$user->f_name}}" required="true">
@@ -216,6 +220,12 @@
                                   <div class="form-group col-md-6">
                                     <label for="name-signup">Company Name</label>
                                     <input type="text" class="form-control" id="company-info-login" name="c_name" placeholder="Company Info" required="true" value="{{$user->fleet->c_name}}">
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                 <div class="form-group col-md-6">
+                                    <label for="name-signup">Company LOGO</label>
+                                    <input type="file" class="form-control" id="company-info-login" name="comp_logo" value="{{$user->fleet->image}}">
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>

@@ -19,6 +19,33 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      @if(Auth::user()->user_type == 'admin')
+        <li class="nav-item {{ Request::url() == url('dashboard/adminfleets') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/adminfleets')}}">
+            <i class="fas fa-fw fa-car"></i>
+            <span>Commercial Fleet Operator</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/adminAdvertiser') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/adminAdvertiser')}}">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>Advertisers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/adminDesigner') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/adminDesigner')}}">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Designers</span>
+          </a>
+        </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/adminPrinters') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/adminPrinters')}}">
+            <i class="fas fa-fw fa-print"></i>
+            <span>Printers</span>
+          </a>
+                </li>
+      @endif
+
       @if(Auth::user()->user_type == 'designer')
         <li class="nav-item {{ Request::url() == url('dashboard/designSamples') ? 'active' : ''}}">
           <a class="nav-link collapsed" href="{{url('dashboard/designSamples')}}">
@@ -130,6 +157,8 @@
         </a>
       </li>
       @endif
+      @if(Auth::user()->user_type != 'admin')
+
       <!-- Heading -->
       <div class="sidebar-heading">
         Profile Area
@@ -148,7 +177,7 @@
           <span>Update Password</span>
         </a>
       </li>
-
+@endif
       <!-- Divider -->
       <hr class="sidebar-divider">
 

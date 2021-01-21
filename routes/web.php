@@ -114,4 +114,14 @@ Route::group(['prefix'=>'dashboard'], function(){
 	Route::get('printersdetail/{id}', [Dashboard::class, 'printersdetail']);
 	Route::get('advertiserdetail/{id}', [Dashboard::class, 'advertiserdetail']);
 	Route::get('designerdetail/{id}', [Dashboard::class, 'designerdetail']);
+
+	Route::get('adminfleets', [Dashboard::class, 'adminfleets']);
+	Route::get('adminDesigner', [Dashboard::class, 'adminDesigner']);
+	Route::get('adminPrinters', [Dashboard::class, 'adminPrinters']);
+	Route::get('adminAdvertiser', [Dashboard::class, 'adminAdvertiser']);
+
+	Route::get('adminfleetsdel/{id}', [Dashboard::class, 'adminfleetsdel']);
+	Route::get('adminDesignerdel/{id}', [Dashboard::class, 'adminDesignerdel']);
+	Route::get('adminPrintersdel/{id}', [Dashboard::class, 'adminPrintersdel']);
+	Route::get('adminAdvertiserdel/{id}', [Dashboard::class, 'adminAdvertiserdel']);
 });

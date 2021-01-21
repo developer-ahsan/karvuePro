@@ -43,6 +43,12 @@ class Dashboard extends Controller
                 $data['CustomersPortal'] = CustomersPortal::count();
                 $data['Commercialfleets'] = Commercialfleets::count();
                 return view('Admin.printinghome')->with('data',$data);
+            } elseif(\Auth::user()->user_type == 'admin') {
+                $data['Designer'] = Designers::count();
+                $data['CustomersPortal'] = CustomersPortal::count();
+                $data['Printers'] = Printers::count();
+                $data['Commercialfleets'] = Commercialfleets::count();
+                return view('Admin.home')->with('data',$data);
             }
         } else {
 	        toastr()->error('Please Login First');
@@ -79,7 +85,7 @@ class Dashboard extends Controller
             $user = User::where('id', Auth::id())->with('printer')->first();
         } elseif (Auth::user()->user_type == 'fleet') {
             $user = User::where('id', Auth::id())->with('fleet')->first();
-        }
+        } 
     	return view('Admin.profile')->with('user', $user);
     }
     public function updateProfile(Request $request)
@@ -181,6 +187,65 @@ class Dashboard extends Controller
         $designer->premium = DesignerService::where('type','Premium')->where('designer_id', $id)->first();
         return view('Admin.common.designerdetail')->with('designer',$designer); 
      }
+
+
+     public function adminAdvertiser()
+    {
+        $advertiser = CustomersPortal::with('users')->get();
+        return view('Admin.superadmin.alladvertiser')->with('advertisers',$advertiser);
+    }
+    public function adminPrinters()
+    {
+        $printers = Printers::with('users')->get();
+        return view('Admin.superadmin.allprinters')->with('printers',$printers);
+    }
+    public function adminfleets()
+    {
+        $fleets = Commercialfleets::with('users')->get();
+        return view('Admin.superadmin.allfleet')->with('fleets',$fleets);
+    }
+    public function adminDesigner()
+    {
+        $designers = Designers::with('users')->get();
+        return view('Admin.superadmin.alldesigners')->with('designers',$designers);
+    }
+
+    public function adminfleetsdel($id)
+    {
+        $fleets = Commercialfleets::find($id);
+        $user = User::find($fleets->user_id);
+        $user->delete();
+        $fleets->delete();
+        toastr()->success('Deleted Successfully');
+        return redirect()->back();
+    }
+    public function adminAdvertiserdel($id)
+    {
+        $fleets = CustomersPortal::find($id);
+        $user = User::find($fleets->user_id);
+        $user->delete();
+        $fleets->delete();
+        toastr()->success('Deleted Successfully');
+        return redirect()->back();
+    }
+    public function adminPrintersdel($id)
+    {
+        $fleets = Printers::find($id);
+        $user = User::find($fleets->user_id);
+        $user->delete();
+        $fleets->delete();
+        toastr()->success('Deleted Successfully');
+        return redirect()->back();
+    }
+    public function adminDesignerdel($id)
+    {
+        $fleets = Designers::find($id);
+        $user = User::find($fleets->user_id);
+        $user->delete();
+        $fleets->delete();
+        toastr()->success('Deleted Successfully');
+        return redirect()->back();
+    }
     public function logout()
     {
     	\Auth::logout();

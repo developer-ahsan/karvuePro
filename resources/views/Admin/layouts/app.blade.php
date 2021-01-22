@@ -120,8 +120,10 @@ button {
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmdMnJY62bTAjU3Sk3IVGGOIMPSe7OMjQ&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
-    <script type="text/javascript" src="{{ asset('js/tshirtEditor.js')}}">
-</script>
+
+
+    
+
     @toastr_css
 
 </head>

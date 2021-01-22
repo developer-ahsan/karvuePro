@@ -104,7 +104,7 @@ var line4;
 		            cornersize: 10,
 	      	  		hasRotatingPoint:true
 		          });
-		          //image.scale(getRandomNum(0.1, 0.25)).setCoords();
+		          // image.scale(getRandomNum(0.1, 0.25)).setCoords();
 		          canvas.add(image);
 		        });
 	  	});	  		  
@@ -207,53 +207,7 @@ var line4;
 	        canvas.renderAll();
 	      }
 	    });	  
-		$('#text-bgcolor').miniColors({
-			change: function(hex, rgb) {
-			  var activeObject = canvas.getActiveObject();
-		      if (activeObject && activeObject.type === 'text') {
-		    	  activeObject.backgroundColor = this.value;
-		        canvas.renderAll();
-		      }
-			},
-			open: function(hex, rgb) {
-				//
-			},
-			close: function(hex, rgb) {
-				//
-			}
-		});		
-		$('#text-fontcolor').miniColors({
-			change: function(hex, rgb) {
-			  var activeObject = canvas.getActiveObject();
-		      if (activeObject && activeObject.type === 'text') {
-		    	  activeObject.fill = this.value;
-		    	  canvas.renderAll();
-		      }
-			},
-			open: function(hex, rgb) {
-				//
-			},
-			close: function(hex, rgb) {
-				//
-			}
-		});
 		
-		$('#text-strokecolor').miniColors({
-			change: function(hex, rgb) {
-			  var activeObject = canvas.getActiveObject();
-		      if (activeObject && activeObject.type === 'text') {
-		    	  activeObject.strokeStyle = this.value;
-		    	  canvas.renderAll();
-		      }
-			},
-			open: function(hex, rgb) {
-				//
-			},
-			close: function(hex, rgb) {
-				//
-			}
-		});
-	
 		//canvas.add(new fabric.fabric.Object({hasBorders:true,hasControls:false,hasRotatingPoint:false,selectable:false,type:'rect'}));
 	   $("#drawingArea").hover(
 	        function() { 	        	
@@ -311,7 +265,6 @@ var line4;
 			   		canvas.calcOffset();
 			    },200);
         });
-	   $(".clearfix button,a").tooltip();
 	   line1 = new fabric.Line([0,0,200,0], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 	   line2 = new fabric.Line([199,0,200,399], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 	   line3 = new fabric.Line([0,0,0,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});

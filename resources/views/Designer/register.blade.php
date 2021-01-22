@@ -109,11 +109,23 @@
                                 
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <!-- <div class="form-group col-md-12">
                                     <h5>Work Samples</h5>
-                                </div>
+                                </div> -->
                                <div class="form-group col-md-6">
+                                <label for="comp_url">Work Samples</label>
                                     <input type="file" name="filenames[]" class="myfrm form-control" multiple  required="true">
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please choose images.</div>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="comp_url">Designer Media</label>
+                                    <select multiple="true" class="form-control">
+                                        <option>Print</option>
+                                        <option>Web</option>
+                                        <option>Video</option>
+                                    </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please choose images.</div>
 

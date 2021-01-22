@@ -83,6 +83,12 @@
             <span>Active Printers</span>
           </a>
         </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/adsView') ? 'active' : ''}}">
+          <a class="nav-link collapsed" href="{{url('dashboard/adsView')}}">
+            <i class="fas fa-fw fa-print"></i>
+            <span>Ads View</span>
+          </a>
+        </li>
       @endif
       @if(Auth::user()->user_type == 'printing')
         
@@ -107,7 +113,7 @@
         <li class="nav-item {{ Request::url() == url('dashboard/workingHoursPrinter') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{url('dashboard/workingHoursPrinter')}}">
           <i class="fas fa-fw fa-clock"></i>
-          <span>Working Hours</span>
+          <span>Installation Schedule</span>
         </a>
       </li>
       @endif
@@ -130,6 +136,12 @@
             <span>Active Printers</span>
           </a>
         </li>
+        <li class="nav-item {{ Request::url() == url('dashboard/createanAds') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{url('dashboard/createanAds')}}">
+          <i class="fas fa-fw fa-briefcase"></i>
+          <span>Create an Ad</span>
+        </a>
+      </li>
       @endif
       @if(Auth::user()->user_type == 'fleet')
       <li class="nav-item {{ Request::url() == url('dashboard/servicearea') ? 'active' : ''}}">
@@ -147,7 +159,7 @@
       <li class="nav-item {{ Request::url() == url('dashboard/workingHours') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{url('dashboard/workingHours')}}">
           <i class="fas fa-fw fa-clock"></i>
-          <span>Working Hours</span>
+          <span>Installation Schedule</span>
         </a>
       </li>
       <li class="nav-item {{ Request::url() == url('dashboard/getWayPoints') ? 'active' : ''}}">

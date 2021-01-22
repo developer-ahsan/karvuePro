@@ -10,6 +10,7 @@ use App\Models\Designers;
 use App\Models\Printers;
 use App\Models\FleetWorkingHr;
 use App\Models\DesignerService;
+use App\Models\WayPoint;
 use App\Models\Commercialfleets;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -166,8 +167,9 @@ class Dashboard extends Controller
     public function fleetoperatorsdetail($id)
     {
         $fleetoperator =  Commercialfleets::where('id',$id)->with('users')->with('vehicle')->with('waypoint')->first();
+        $waypoints = WayPoint::select('location')->where('fleet_id', $id)->get();
         $fleetoperator->businessHrs = FleetWorkingHr::where('fleet_id',$id)->get();
-        return view('Admin.common.fleetoperatordetail')->with('fleetoperator',$fleetoperator);
+        return view('Admin.common.fleetoperatordetail', compact('waypoints'))->with('fleetoperator',$fleetoperator);
     }
      public function printersdetail($id)
      {
@@ -245,6 +247,22 @@ class Dashboard extends Controller
         $fleets->delete();
         toastr()->success('Deleted Successfully');
         return redirect()->back();
+    }
+    public function createanAds()
+    {
+        return view('Admin.advertiser.createad');
+    }
+    public function findfleetandprinter(Request $request)
+    {
+        $fleets = Commercialfleets::where('locationField',$request->location)->get();
+        $printers = Printers::where('locationField',$request->location)->get();
+        return view('Admin.advertiser.createad')->with('fleets',$fleets)->with('printers',$printers);
+
+        // dd($fleets);
+    }
+    public function adsView()
+    {
+        return view('Admin.designer.adsview');
     }
     public function logout()
     {

@@ -1,5 +1,5 @@
 <style type="text/css">
-      #right-panel {
+     #right-panel {
         font-family: "Roboto", "sans-serif";
         line-height: 30px;
         padding-left: 10px;
@@ -30,6 +30,17 @@
         float: left;
         width: 100%;
         height: 100%;
+      }
+
+      #right-panel {
+        float: right;
+        width: 34%;
+        height: 100%;
+      }
+
+      .panel {
+        height: 100%;
+        overflow: auto;
       }
 
     </style>
@@ -134,7 +145,10 @@
 	<!-- cardbody -->
 
 </div>
-				    <div id="map"></div>
+    <div id="map"></div>
+    <!-- <div id="right-panel">
+      <p>Total Distance: <span id="total"></span></p>
+    </div> -->
 
 </div>
 @endsection
@@ -142,7 +156,7 @@
 <script>
   $( document ).ready(function() {
     console.log( "ready!" );
-    var waypointss = {!! json_encode($fleetoperator->waypoint->toArray()) !!};
+    var waypointss = {!! json_encode($waypoints->toArray()) !!};
     console.log(waypointss);
     function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -202,3 +216,5 @@
 });
       
     </script>
+
+

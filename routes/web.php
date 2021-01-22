@@ -124,4 +124,8 @@ Route::group(['prefix'=>'dashboard'], function(){
 	Route::get('adminDesignerdel/{id}', [Dashboard::class, 'adminDesignerdel']);
 	Route::get('adminPrintersdel/{id}', [Dashboard::class, 'adminPrintersdel']);
 	Route::get('adminAdvertiserdel/{id}', [Dashboard::class, 'adminAdvertiserdel']);
+	Route::get('createanAds', [Dashboard::class, 'createanAds']);
+	Route::post('findfleetandprinter', [Dashboard::class, 'findfleetandprinter']);
+	Route::get('adsView', [Dashboard::class, 'adsView']);
+
 });

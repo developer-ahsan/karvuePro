@@ -1,9 +1,9 @@
+
 @extends('Admin.layouts.app')
 
 @section('content')
 <!-- Begin Page Content -->
         <div class="container-fluid">
-         
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">

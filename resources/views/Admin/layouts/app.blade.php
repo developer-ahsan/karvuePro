@@ -120,10 +120,8 @@ button {
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmdMnJY62bTAjU3Sk3IVGGOIMPSe7OMjQ&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
-
-
-    
-
+        
+    @stack('heads')
     @toastr_css
 
 </head>

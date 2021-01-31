@@ -32,7 +32,7 @@ class Designer extends Controller
 
     	$designer = new Designers;
         $designer->c_name = $request->c_name; 
-        $designer->c_phone = $request->c_phone;
+        $designer->c_phone = (string)$request->c_phone;
         $designer->comp_url = $request->c_url;
     	if ($request->has('comp_logo')) {
     		if ($request->comp_logo) {

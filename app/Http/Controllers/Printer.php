@@ -34,7 +34,7 @@ class Printer extends Controller
     	}
     	
         $printer->c_name = $request->c_name; 
-        $printer->c_phone = $request->c_phone; 
+        $printer->c_phone = (string)$request->c_phone; 
         $printer->email = $request->email; 
         $printer->password = $request->password; 
         $printer->locationField = $request->locationField; 

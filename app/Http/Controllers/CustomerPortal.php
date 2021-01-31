@@ -26,7 +26,7 @@ class CustomerPortal extends Controller
         $user->user_type = "advertiser";
         $user->save();
     	$customer = new CustomersPortal;
-        $customer->phone = $request->c_phone;
+        $customer->phone = (string)$request->c_phone;
         $customer->user_id = $user->id;
 
         $customer->save();

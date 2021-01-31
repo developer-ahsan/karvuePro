@@ -15,7 +15,7 @@ class CreateCommercialVehiclesTable extends Migration
     {
         Schema::create('commercial_vehicles', function (Blueprint $table) {
             $table->id();
-            $table->string('count');
+            $table->integer('count');
             $table->string('type');
             $table->string('fleet_id');
             $table->timestamps();

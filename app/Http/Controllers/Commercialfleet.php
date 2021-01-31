@@ -58,7 +58,7 @@ class Commercialfleet extends Controller
         $array2 = explode(',', $request->v_types);
         for ($i=0; $i < count($array1); $i++) {
 			$cv = new CommercialVehicle;
-        	$cv->count = $array1[$i];
+        	$cv->count = (int)$array1[$i];
         	$cv->type = $array2[$i];
         	$cv->fleet_id = $cf->id;
         	$cv->save();
